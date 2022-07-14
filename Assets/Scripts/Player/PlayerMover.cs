@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
-    [SerializeField] private float _stepSize;
+    [SerializeField] private float _verticalStepSize;
     [SerializeField] private float _maxHeight;
     [SerializeField] private float _minHeight;
+    [SerializeField] private float _horizontalStepSize;
     [SerializeField] private float _maxWidth;
     [SerializeField] private float _minWidth;
 
@@ -46,28 +47,28 @@ public class PlayerMover : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
     }
 
-    public void TryMoveUp()
+    private void TryMoveUp()
     {
         if (_targetPosition.y < _maxHeight)
-            SetNextPositionY(_stepSize);
+            SetNextPositionY(_verticalStepSize);
     }
 
-    public void TryMoveDown()
+    private void TryMoveDown()
     {
         if (_targetPosition.y > _minHeight)
-            SetNextPositionY(-_stepSize);
+            SetNextPositionY(-_verticalStepSize);
     }
 
-    public void TryMoveRight()
+    private void TryMoveRight()
     {
         if (_targetPosition.x < _maxWidth)
-            SetNextPositionX(_stepSize);
+            SetNextPositionX(_horizontalStepSize);
     }
 
-    public void TryMoveLeft()
+    private void TryMoveLeft()
     {
         if (_targetPosition.x > _minWidth)
-            SetNextPositionX(-_stepSize);
+            SetNextPositionX(-_horizontalStepSize);
     }
 
     private void SetNextPositionX(float stepSize)
