@@ -15,19 +15,23 @@ public class PlayerMover : MonoBehaviour
     private void Awake()
     {
         _input = new PlayerInput();
-        _input.Player.MoveUp.performed += ctx => TryMoveUp();
-        _input.Player.MoveLeft.performed += ctx => TryMoveLeft();
-        _input.Player.MoveDown.performed += ctx => TryMoveDown();
-        _input.Player.MoveRight.performed += ctx => TryMoveRight();
     }
 
     private void OnEnable()
     {
+        _input.Player.MoveUp.performed += ctx => TryMoveUp();
+        _input.Player.MoveLeft.performed += ctx => TryMoveLeft();
+        _input.Player.MoveDown.performed += ctx => TryMoveDown();
+        _input.Player.MoveRight.performed += ctx => TryMoveRight();
         _input.Enable();
     }
 
     private void OnDisable()
     {
+        _input.Player.MoveUp.performed -= ctx => TryMoveUp();
+        _input.Player.MoveLeft.performed -= ctx => TryMoveLeft();
+        _input.Player.MoveDown.performed -= ctx => TryMoveDown();
+        _input.Player.MoveRight.performed -= ctx => TryMoveRight();
         _input.Disable();
     }
 
