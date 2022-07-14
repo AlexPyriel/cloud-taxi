@@ -9,7 +9,27 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float _maxWidth;
     [SerializeField] private float _minWidth;
 
+    private PlayerInput _input;
     private Vector3 _targetPosition;
+
+    private void Awake()
+    {
+        _input = new PlayerInput();
+        _input.Player.MoveUp.performed += ctx => TryMoveUp();
+        _input.Player.MoveLeft.performed += ctx => TryMoveLeft();
+        _input.Player.MoveDown.performed += ctx => TryMoveDown();
+        _input.Player.MoveRight.performed += ctx => TryMoveRight();
+    }
+
+    private void OnEnable()
+    {
+        _input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
 
     private void Start()
     {
