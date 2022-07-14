@@ -46,25 +46,25 @@ public class PlayerMover : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _movementSpeed * Time.deltaTime);
     }
 
-    public void TryMoveUp()
+    private void TryMoveUp()
     {
         if (_targetPosition.y < _maxHeight)
             SetNextPositionY(_stepSize);
     }
 
-    public void TryMoveDown()
+    private void TryMoveDown()
     {
         if (_targetPosition.y > _minHeight)
             SetNextPositionY(-_stepSize);
     }
 
-    public void TryMoveRight()
+    private void TryMoveRight()
     {
         if (_targetPosition.x < _maxWidth)
             SetNextPositionX(_stepSize);
     }
 
-    public void TryMoveLeft()
+    private void TryMoveLeft()
     {
         if (_targetPosition.x > _minWidth)
             SetNextPositionX(-_stepSize);
